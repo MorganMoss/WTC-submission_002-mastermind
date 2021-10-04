@@ -6,8 +6,11 @@ def run_game():
     # step 1 : creating 4 digit code
     code_length = 4 # so it can be generalized for different difficulty
     code = []
-    for _ in range(code_length):
-        code.append(random.randint(1,8))
+    while len(code) < (code_length):
+        i = random.randint(1,8)
+        if i not in code:
+            code.append(i)
+        
     print(  "{}-digit Code has been set.".format(code_length),
             "Digits in range 1 to 8. You have 12 turns to break it.")
     turn = 1
@@ -25,10 +28,14 @@ def run_game():
             print("Please enter exactly {} digits.".format(code_length))
             continue
             # if digits in the correct range of 1 - 8
+        check = True
         for char in guess:
             if not char in "12345678":
                 print("Please enter digits in range 1 to 8")
-                continue
+                check = False
+                break
+        if not check:
+            continue     
 
             # converts a string to list of ints
         guess = list(map(int,list(guess))) 
