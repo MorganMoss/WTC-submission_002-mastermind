@@ -2,6 +2,7 @@ import random
 
 
 def run_game():
+    "Starts Mastermind"
     # step 1 : creating 4 digit code
     code_length = 4 # so it can be generalized for different difficulty
     code = []
@@ -29,7 +30,8 @@ def run_game():
                 print("Please enter digits in range 1 to 8")
                 continue
 
-        guess = list(map(int,list(guess)))
+            # converts a string to list of ints
+        guess = list(map(int,list(guess))) 
 
         # step 3 : comparing guess to original
         correct_not_in_place = 0
@@ -53,6 +55,7 @@ def run_game():
             break
         
         turn += 1
+
         print("Turns left: {}".format(number_of_turns+1-turn))
 
     print("The code was: {}".format("".join(list(map(str,code)))))
